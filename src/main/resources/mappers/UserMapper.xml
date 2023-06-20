@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.mapper.UserMapper">
+    <!--这里写增删改查的数据，编写SQL语句-->
+
+    <!--    int insertUser()-->
+    <insert id="insertUser" parameterType="com.mybatis.pojo.User">
+        insert into t_user(username,password,age,sex) values(#{user.username},#{user.password},#{user.age},#{user.sex})
+    </insert>
+
+    <!--void updateUser();-->
+    <update id="updateUser" parameterType="com.mybatis.pojo.User">
+        update t_user set username = '张三' where id = 5
+    </update>
+
+    <!--void deleteUser();-->
+    <delete id="deleteUser" parameterType="com.mybatis.pojo.User">
+        delete from t_user where id = 3
+    </delete>
+
+    <!--User getUserById();-->
+    <!--
+            查询功能的标签必须设置resultType或者resultMap
+            resultType：设置默认的映射关系
+            resultMap：设置自定义的映射关系（字段名与属性名不一样，多对一或者一对多）
+    -->
+    <select id="getUserById" resultType="com.mybatis.pojo.User">
+        select * from t_user where id = 6
+    </select>
+
+    <!--List<User> getAllUser();-->
+    <select id="getAllUser" resultType="com.mybatis.pojo.User">
+        select * from t_user
+    </select>
+</mapper>
