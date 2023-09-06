@@ -7,6 +7,18 @@
     <!--配置连接数据库的环境-->
     <!--引入properties文件-->
     <properties resource="jdbc.properties"/>
+
+    <!--设置mybatis的全局配置-->
+    <settings>
+        <!--将下滑线自动映射为驼峰，emp_name:empName-->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--设置别名-->
+    <typeAliases>
+        <package name="com.mybatis.pojo"/>
+    </typeAliases>
+    
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
@@ -21,6 +33,13 @@
     <!--引入映射文件-->
     <!--mapper接口相当于dao，不需要提供实现类-->
     <mappers>
-        <mapper resource="mappers/UserMapper.xml"/>
+<!--        <mapper resource="mappers/UserMapper.xml"/>-->
+        <!--
+            以包为单位引入配置文件
+            要求：
+                1.mapper接口所在的包要和映射文件所在的包一致
+                2.mapper接口要和映射文件的名字一致
+        -->
+        <package name="com.mybatis.mapper"/>
     </mappers>
 </configuration>

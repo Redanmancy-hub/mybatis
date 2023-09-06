@@ -4,6 +4,7 @@ import com.mybatis.pojo.User;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 // mybatis中有面向接口编程的功能
 public interface UserMapper {
@@ -33,10 +34,25 @@ public interface UserMapper {
     /**
      * 根据用户id查询信息
      */
-    User getUserById();
+    User getUserById(int id);
 
     /**
      * 查询全部数据
      */
     List<User> getAllUser();
+
+    /**
+     * mybatis获取参数值的情况
+     */
+    User getUserByUsername(String username);
+
+    /**
+     * 验证登录
+     */
+    User checkOutLogin(String username,String password);
+
+    /**
+     * 验证登录（map）
+     */
+    User checkOutLoginMap(Map<String ,Object> map);
 }

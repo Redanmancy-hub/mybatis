@@ -27,11 +27,27 @@
             resultMap：设置自定义的映射关系（字段名与属性名不一样，多对一或者一对多）
     -->
     <select id="getUserById" resultType="com.mybatis.pojo.User">
-        select * from t_user where id = 6
+        select * from t_user where id = #{id}
     </select>
 
     <!--List<User> getAllUser();-->
     <select id="getAllUser" resultType="com.mybatis.pojo.User">
         select * from t_user
+    </select>
+
+    <!--    User getUserByUsername();-->
+    <select id="getUserByUsername" resultType="com.mybatis.pojo.User">
+        select * from t_user where username = #{username}
+        <!--select * from t_user where username = '${username}'-->
+    </select>
+
+    <!--    User checkOutLogin(String username,String password);-->
+    <select id="checkOutLogin" resultType="com.mybatis.pojo.User">
+        select * from t_user where username = #{param1} and password = #{param2}
+    </select>
+
+    <!--    User checkOutLoginMap(Map<String ,Object> map);-->
+    <select id="checkOutLoginMap" resultType="com.mybatis.pojo.User">
+        select * from t_user where username = #{username} and password = #{password}
     </select>
 </mapper>
